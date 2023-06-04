@@ -23,7 +23,6 @@ class BST {
     Node* right;
   };
   Node* root;
-
   Node* addNode(Node* root, const T& value) {
     if (root == nullptr) {
       root = new Node;
