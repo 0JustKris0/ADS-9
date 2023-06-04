@@ -6,23 +6,23 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
+  BST<std::string> tree;
   std::ifstream file(filename);
-  if (!file.is_open()) {
-    throw std::string("ERROR!");
+  std::string line;
+  std::string text;
+  std::string push;
+  while (std::getline(file, line)) {
+    text = text + line + " ";
   }
-  std::string word = "";
-  BST<std::string> bst;
-  while (!file.eof()) {
-    word = "";
-    while (1) {
-      char symb = file.get();
-      if ((symb >= 65 && symb <= 90) || (symb >= 97 && symb <= 122)) {
-        word += tolower(symb);
-      } else {
-        break;
-      }
+  for (auto a : text) {
+    if (isalpha(a)) {
+      a = tolower(a);
+      push += a;
+    } else {
+      tree.addElement(push);
+      push = "";
     }
-    bst.AddValue(word);
   }
-  return bst;
+  file.close();
+  return tree;
 }
